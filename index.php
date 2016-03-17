@@ -8,11 +8,12 @@ $fb = new Facebook\Facebook([
   //'default_access_token' => '{access-token}', // optional
 ]);
 
-//$helper = $fb->getCanvasHelper();
+$helper = $fb->getCanvasHelper();
 
 try {
+	$accessToken = $helper->getAccessToken();
   // Returns a `Facebook\FacebookResponse` object
-  $response = $fb->get('/me?fields=id,name', '{access-token}');
+  $response = $fb->get('/me?fields=id,name', $accessToken);
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   echo 'Graph returned an error: ' . $e->getMessage();
   exit;
