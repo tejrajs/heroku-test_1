@@ -97,7 +97,7 @@ if(isset($_POST) && $_POST['inputMessage'] != ''){
 
       <div class="starter-template">
         <h1>Welcom to My App</h1>
-        <p class="lead">Hellou, This is Tej and your name is <?php echo $user['name'];?></p>
+        <p class="lead">Hellou, This is Tej and your name is <?php echo $user['name'];?> Post On Your Wall</p>
         <form class="form-horizontal" method="post">
 		  <div class="form-group">
 		    <label for="inputEmail3" class="col-sm-2 control-label">Link</label>
@@ -113,7 +113,7 @@ if(isset($_POST) && $_POST['inputMessage'] != ''){
 		  </div>
 		  <div class="form-group">
 		    <div class="col-sm-offset-2 col-sm-10">
-		      <button type="submit" class="btn btn-default">Sign in</button>
+		      <button type="submit" class="btn btn-default">Post</button>
 		    </div>
 		  </div>
 		</form>
