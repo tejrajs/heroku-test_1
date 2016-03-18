@@ -4,9 +4,11 @@ require(__DIR__ . '/fb.connect.php');
 
 
 $response = $fb->get('/me', $accessToken);
+$requestUserLikes = $fb->request('GET', '/me/likes?fields=id,name&amp;limit=1');
 $user = $response->getGraphUser();
 
-echo '<pre>';print_r($user);echo '</pre>';
+echo '<pre>';print_r($requestUserLikes);echo '</pre>';
+
 if($db->exists('fb_users','fb_id',['fb_id'=> $user['id']]) == 0){
 	$db->insert('fb_users',['fb_id' => $user['id'],'name' => $user['name'],'email' => $user['email']]);
 }
