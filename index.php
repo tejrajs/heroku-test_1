@@ -11,24 +11,32 @@ if($db->exists('fb_users','fb_id',['fb_id'=> $user['id']]) == 0){
 	$db->insert('fb_users',['fb_id' => $user['id'],'name' => $user['name'],'email' => $user['email']]);
 }
 
-$linkData = [
-		'link' => 'http://www.example.com',
-		'message' => 'Test post : User provided message',
-];
-try {
-	// Returns a `Facebook\FacebookResponse` object
-	$response = $fb->post('/me/feed', $linkData, $accessToken);
-} catch(Facebook\Exceptions\FacebookResponseException $e) {
-	echo 'Graph returned an error: ' . $e->getMessage();
-	exit;
-} catch(Facebook\Exceptions\FacebookSDKException $e) {
-	echo 'Facebook SDK returned an error: ' . $e->getMessage();
-	exit;
+if(isset($_POST) && $_POST['inputMessage'] != ''){
+	
+	$linkData['link'] = '';
+	
+	if(isset($_POST['inputLink']) && $_POST['inputLink'] != ''){
+		$linkData['link'] = $_POST['inputLink'];
+	}
+	$linkData['message'] = $_POST['inputMessage'];
+	
+	try {
+		// Returns a `Facebook\FacebookResponse` object
+		$response = $fb->post('/me/feed', $linkData, $accessToken);
+	} catch(Facebook\Exceptions\FacebookResponseException $e) {
+		echo 'Graph returned an error: ' . $e->getMessage();
+		exit;
+	} catch(Facebook\Exceptions\FacebookSDKException $e) {
+		echo 'Facebook SDK returned an error: ' . $e->getMessage();
+		exit;
+	}
+	
+	$graphNode = $response->getGraphNode();
+	
+	$db->insert('fb_posts',['post_id' => $graphNode['id'],'link' => $linkData['link'],'email' => $linkData['message']]);
+
 }
 
-$graphNode = $response->getGraphNode();
-
-echo 'Posted with id: ' . $graphNode['id'];
 ?>
 
 <!DOCTYPE html>
@@ -90,6 +98,25 @@ echo 'Posted with id: ' . $graphNode['id'];
       <div class="starter-template">
         <h1>Welcom to My App</h1>
         <p class="lead">Hellou, This is Tej and your name is <?php echo $user['name'];?></p>
+        <form class="form-horizontal" method="post">
+		  <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">Link</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="inputLink" name="inputLink" placeholder="Email">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-2 control-label">message</label>
+		    <div class="col-sm-10">
+		    	<textarea rows="3" cols="5" name="inputMessage"></textarea>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-default">Sign in</button>
+		    </div>
+		  </div>
+		</form>
       </div>
 
     </div><!-- /.container -->
