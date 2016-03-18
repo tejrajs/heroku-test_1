@@ -12,7 +12,7 @@ if(!isset($_SESSION['facebook_access_token'])){
 		echo 'Facebook SDK returned an error: ' . $e->getMessage();
 		exit;
 	}
-	if (isset($accessToken)) {
+	if (!isset($accessToken)) {
 		header('Location: login-callback.php');
 	}
 }else{
