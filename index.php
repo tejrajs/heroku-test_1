@@ -102,13 +102,13 @@ if(isset($_POST) && $_POST['inputMessage'] != ''){
 		  <div class="form-group">
 		    <label for="inputEmail3" class="col-sm-2 control-label">Link</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="inputLink" name="inputLink" placeholder="Email">
+		      <input type="text" class="form-control" id="inputLink" name="inputLink" placeholder="Link">
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label for="inputPassword3" class="col-sm-2 control-label">message</label>
 		    <div class="col-sm-10">
-		    	<textarea rows="3" cols="5" name="inputMessage"></textarea>
+		    	<textarea class="form-control" cols="5" name="inputMessage"> </textarea>
 		    </div>
 		  </div>
 		  <div class="form-group">
