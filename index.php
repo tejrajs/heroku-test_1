@@ -33,7 +33,7 @@ if(isset($_POST) && $_POST['inputMessage'] != ''){
 	
 	$graphNode = $response->getGraphNode();
 	
-	$db->insert('fb_posts',['post_id' => $graphNode['id'],'link' => $linkData['link'],'email' => $linkData['message']]);
+	$db->insert('fb_posts',['post_id' => $graphNode['id'],'link' => $linkData['link'], 'message' => $linkData['message']]);
 
 }
 
