@@ -2,10 +2,12 @@
 require(__DIR__ . '/config.php');
 require(__DIR__ . '/fb.connect.php');
 
+
 $response = $fb->get('/me?fields=id,name,email', $accessToken);
 $user = $response->getGraphUser();
-
-$db->insert('fb_users',['fb_id' => $user['id'],'name' => $user['name'],'email' => $user['email']]);
+if($db->exists('fb_users','fb_id',['fb_id'=> $user['id']]) == 0){
+	$db->insert('fb_users',['fb_id' => $user['id'],'name' => $user['name'],'email' => $user['email']]);
+}
 ?>
 
 <!DOCTYPE html>
