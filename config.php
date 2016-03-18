@@ -9,6 +9,9 @@ define( 'DB_NAME', 'facebook_apps' ); // set database name
 define( 'SEND_ERRORS_TO', 'tej.raj@bentraytech.com' ); //set email notification email address
 define( 'DISPLAY_DEBUG', true ); //display db errors?
 
+define( 'APP_WEB_URL', 'https://tejtestapp.herokuapp.com/'); //display db errors?
+define( 'APP_FB_URL', 'https://apps.facebook.com/tejtest/' ); //display db errors?
+
 require(__DIR__ . '/vendor/autoload.php');
 require(__DIR__ . '/include/class.db.php');
 
