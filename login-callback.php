@@ -18,7 +18,7 @@ if (isset($accessToken)) {
 	// Logged in!
 	$_SESSION['facebook_access_token'] = (string) $accessToken;
 	
-	header('Location: index.php');
+	header('Location: https://apps.facebook.com/tejtest/');
 	// Now you can redirect to another page and use the
 	// Now you can redirect to another page and use the
 	// access token from $_SESSION['facebook_access_token']
