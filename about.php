@@ -1,8 +1,6 @@
 <?php
 require(__DIR__ . '/config.php');
 require(__DIR__ . '/fb.connect.php');
-
-$user = $response->getGraphUser();
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +61,6 @@ $user = $response->getGraphUser();
 
       <div class="starter-template">
         <h1>About App</h1>
-        <p class="lead"><?php echo 'Name: ' . $user['name'];?></p>
       </div>
 
     </div><!-- /.container -->
