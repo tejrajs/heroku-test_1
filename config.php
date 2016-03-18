@@ -1,4 +1,7 @@
 <?php
+ob_start();
+session_start();
+
 define( 'DB_HOST', '85.10.205.173:3306' ); // set database host
 define( 'DB_USER', 'tejrajstha' ); // set database user
 define( 'DB_PASS', 'meteju@99' ); // set database password
