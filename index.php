@@ -4,14 +4,31 @@ require(__DIR__ . '/fb.connect.php');
 
 
 $response = $fb->get('/me', $accessToken);
-$requestUserLikes = $fb->request('GET', '/me/likes?fields=id,name&amp;limit=1');
 $user = $response->getGraphUser();
 
-echo '<pre>';print_r($requestUserLikes);echo '</pre>';
 
 if($db->exists('fb_users','fb_id',['fb_id'=> $user['id']]) == 0){
 	$db->insert('fb_users',['fb_id' => $user['id'],'name' => $user['name'],'email' => $user['email']]);
 }
+
+$linkData = [
+		'link' => 'http://www.example.com',
+		'message' => 'Test post : User provided message',
+];
+try {
+	// Returns a `Facebook\FacebookResponse` object
+	$response = $fb->post('/me/feed', $linkData, '{access-token}');
+} catch(Facebook\Exceptions\FacebookResponseException $e) {
+	echo 'Graph returned an error: ' . $e->getMessage();
+	exit;
+} catch(Facebook\Exceptions\FacebookSDKException $e) {
+	echo 'Facebook SDK returned an error: ' . $e->getMessage();
+	exit;
+}
+
+$graphNode = $response->getGraphNode();
+
+echo 'Posted with id: ' . $graphNode['id'];
 ?>
 
 <!DOCTYPE html>
