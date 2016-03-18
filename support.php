@@ -1,8 +1,3 @@
-<?php
-require(__DIR__ . '/config.php');
-require(__DIR__ . '/fb.connect.php');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   
