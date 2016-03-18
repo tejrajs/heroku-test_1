@@ -52,8 +52,8 @@ $user = $response->getGraphUser();
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Home</a></li>
-            <li><a href="about.php">About</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li class="active"><a href="about.php">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -62,8 +62,8 @@ $user = $response->getGraphUser();
     <div class="container">
 
       <div class="starter-template">
-        <h1>Welcom to My App</h1>
-        <p class="lead">Hellou, This is Tej and your name is <?php echo $user['name'];?></p>
+        <h1>About App</h1>
+        <p class="lead"><?php echo 'Name: ' . $user['name'];?></p>
       </div>
 
     </div><!-- /.container -->
